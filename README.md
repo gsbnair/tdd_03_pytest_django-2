@@ -235,3 +235,17 @@ README.md
 
 - Now the right click on the index.html file and select preview
 
+## Pushing to github
+- be at tdd03_pytest_django folder
+- initialize git folder
+```sh
+git intit
+```
+- Logon to github and add a repository
+- add remote repository into local git repo
+
+`git remote add origin https://github.com/gsbnair/tdd_03_pytest_django.git`
+
+`git config --global user.name "gsbnair"`
+
+
