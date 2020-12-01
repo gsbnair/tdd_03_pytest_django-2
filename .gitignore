@@ -1,0 +1,5 @@
+.vscode
+tdd03
+htmlcov
+pytest_cache
+settings.json
