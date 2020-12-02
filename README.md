@@ -1,5 +1,7 @@
 # Test-Driven Development (TDD) implementation in Python Django
 
+## Tutorial for beginners to follow TDD + django + pytest + mixer + pytest coverage
+
 ## Installation steps
 
 - Open a newly created project folder in vscode.
@@ -248,4 +250,5 @@ git intit
 
 `git config --global user.name "gsbnair"`
 
+- Now push the repository to github
 

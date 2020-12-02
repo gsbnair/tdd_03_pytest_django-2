@@ -1,0 +1,36 @@
+...\tdd03_pytest_django
+|   .gitignore
+|   README.md
+|   requirements.txt
++---tdd
+|   |   .coverage
+|   |   .coveragerc
+|   |   manage.py
+|   |   pytest.ini
+|   |               
+|   +---htmlcov
+|   |       
+|   +---tdd
+|   |   |   asgi.py
+|   |   |   settings.py
+|   |   |   test_settings.py
+|   |   |   urls.py
+|   |   |   wsgi.py
+|   |   |   __init__.py
+|   |   |   
+|   |           
+|   \---tddapp
+|       |   admin.py
+|       |   apps.py
+|       |   models.py
+|       |   views.py
+|       |   __init__.py
+|       |   
+|       +---migrations
+|       |       __init__.py
+|       |       
+|       +---tests
+|       |   |   test_models.py
+|       |   |   __init__.py
+|       |   |   
+                    
