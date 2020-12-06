@@ -1,5 +1,6 @@
 .vscode
-tdd03
-htmlcov
+tdd03_2
+tdd/htmlcov
 pytest_cache
-settings.json
+treestructure.txt
+

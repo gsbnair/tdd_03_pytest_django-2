@@ -47,6 +47,8 @@ $ pip install pytest
 $ pip install pytest-django
 $ pip install ipdb
 $ pip install pytest-cov
+$ pip install pytest-mock
+$ pip install stripe
 ```
 
 - Now close the terminal and open a new terminal to get the effect of the newly installed modules
@@ -227,7 +229,9 @@ project-structure-01.jpg
 README.md
 ```
 
-- Now, run the test by using the py.test and the test should pass.
+- Now, run the test by using the py.test and the test should pass. 
+- Open the terminal and go to \tdd directory and give 
+- `py.test` 
 
 >  Let’s have a look at our coverage report. Every time it runs a test, it generates an HTML coverage folder called htmlcov. This consists of an index.html file that can be viewed.
 
@@ -251,4 +255,57 @@ git intit
 `git config --global user.name "gsbnair"`
 
 - Now push the repository to github
+
+# Part-2 
+` https://github.com/AllenEllis/Django-Test-Driven-Development-Cookbook `
+
+### Starting from slide-15
+
+> Imagine a model function that returns truncated body
+- Test get_excerpt() function
+
+> We want to show the excerpt in our admin list view
+- In order to instantiate an admin class, you must pass in a model class and an AdminSite() instance
+
+> We want to create a view that can be seen by anyone
+
+- Django's self.client.get() is slow
+- We will use Django's RequestFactory instead
+- We can instantiate our class-based views just like we do it in our urls.py, via ViewName.as_view()
+- To test our views, we create a Request, pass it to our View, then make assertions on the returned Response
+- Treat class-based views as black-boxes
+>Our Tests lack the following:
+- **This does NOT render the view and test the template**
+- **This does NOT call urls.py**
+
+**Testing authentication:**
+
+- We want to create a view that can only be accessed by superusers
+- We will use the @method_decorator(login_required) trick to protect our view
+- That means, that there must be a .user attribute on the Request.
+- Even if we want to rest as an anonymous user, in that case Django automatically attaches a AnonymousUser instance to the Request, so we have to fake this as well
+
+> Testing 404 errors
+
+- Your views will often raise 404 errors
+- Unfortunately, they are exceptions and they bubble up all the way into your tests, so you cannot simply check `assert resp.status_code == 404`
+- Instead, you have to execute the view inside a `with`-statement
+
+## Mocking Constants, Functions, Classes
+Moking requests:
+
+- We want to implement a Stripe integration and send an email notification when we get a payment
+- We will use the official stripe Python wrapper
+- Fictional: We learned from their docs that we can call `stripe.Charge()` and it returns a dictionary with `{'id': 'charged'}` "
+- How can we avoid making actual HTTP requests to the Strpe API when we run our tests but still get the return dictionary because our view code depends on it?
+
+```
+    def test_payment(self, mocker):
+        mocker.patch("stripe.Charge", return_value={"id": "234"})
+        req = RequestFactory().post("/", data={"token": "123"})
+        resp = views.PaymentView.as_view()(req)
+        assert resp.status_code == 302, "Should redirect to success_url"
+        assert len(mail.outbox) == 1, "Should send an email"
+
+```
 
