@@ -257,7 +257,6 @@ git intit
 - Now push the repository to github
 
 # Part-2 
-` https://github.com/AllenEllis/Django-Test-Driven-Development-Cookbook `
 
 ### Starting from slide-15
 
@@ -292,7 +291,7 @@ git intit
 - Instead, you have to execute the view inside a `with`-statement
 
 ## Mocking Constants, Functions, Classes
-Moking requests:
+Mocking stripe requests:
 
 - We want to implement a Stripe integration and send an email notification when we get a payment
 - We will use the official stripe Python wrapper
